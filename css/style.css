@@ -52,32 +52,51 @@ body {
     justify-content: center;
     text-align: center;
     color: white;
-    padding: 0 20px; /* Thêm padding tránh chữ sát viền màn hình */
+    padding: 0 20px;
 }
 
 .hero-content h1 { font-size: 3.5rem; text-shadow: 0 3px 10px rgba(0,0,0,0.6); line-height: 1.2; }
 
+/* === ĐỊNH DẠNG NÚT CHUẨN === */
 .btn {
     display: inline-block;
-    padding: 14px 32px;
-    border-radius: 50px;
+    padding: 12px 28px;
+    border-radius: 8px; /* Bo góc nhẹ hiện đại đồng bộ với card sản phẩm */
     font-weight: 600;
     text-decoration: none;
     transition: 0.3s;
-    margin: 10px; /* Sửa lại margin đều các bên tránh dính nút khi xuống dòng */
+    text-align: center;
+    border: none;
+    cursor: pointer;
 }
 
-.btn-primary { background: var(--primary); color: white; }
-.btn-primary:hover { background: #c2185b; }
+/* Nút Thêm vào giỏ (Nền hồng chữ trắng) */
+.btn-primary { 
+    background: var(--primary); 
+    color: white; 
+}
+.btn-primary:hover { 
+    background: #c2185b; 
+}
 
+/* Nút Xem chi tiết mặc định (Viền hồng nền trong suốt, hiện rõ ràng) */
 .btn-outline {
-    border: 2px solid white;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
+}
+.btn-outline:hover {
+    background: var(--primary);
     color: white;
 }
 
-.btn-outline:hover {
-    background: white;
-    color: var(--primary);
+/* Class bổ trợ căng tràn 100% chiều ngang, xếp chồng ngay ngắn */
+.btn-block {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 10px; /* Khoảng cách đều đặn giữa các nút */
+    box-sizing: border-box;
 }
 
 .section {
@@ -108,8 +127,8 @@ body {
 }
 
 .flower-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(233,30,99,0.2);
+    transform: translateY(-5px); /* Giảm độ nẩy để tránh cảm giác che khuất nút trên màn hình nhỏ */
+    box-shadow: 0 12px 30px rgba(233,30,99,0.15);
 }
 
 .flower-card img {
@@ -147,7 +166,7 @@ body {
 .footer h3 { color: white; margin-bottom: 20px; }
 
 .cart-icon {
-    position: relative; /* Thêm để định vị chấm đỏ giỏ hàng chính xác */
+    position: relative;
 }
 
 .cart-count {
@@ -183,7 +202,7 @@ body {
     }
 
     .hero {
-        height: 70vh; /* Giảm chiều cao trên mobile cho vừa tầm mắt */
+        height: 70vh;
     }
 
     .hero-content h1 {
@@ -195,12 +214,16 @@ body {
         padding: 0 10px;
     }
 
+    /* Tối ưu hóa kích thước nút trên Mobile */
     .btn {
-        padding: 10px 24px;
+        padding: 10px 20px;
         font-size: 0.95rem;
-        margin: 5px;
-        width: 80%; /* Nút co giãn rộng ra cho dễ bấm trên cảm ứng */
-        max-width: 280px;
+    }
+    
+    .btn-block {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 8px;
     }
 
     .section {
@@ -213,12 +236,12 @@ body {
     }
 
     .flower-grid {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Cho phép hiển thị card nhỏ hơn chút để vừa màn hình */
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 15px;
     }
 
     .footer-grid {
-        text-align: center; /* Căn giữa nội dung footer trên điện thoại */
+        text-align: center;
         gap: 30px;
     }
 }
