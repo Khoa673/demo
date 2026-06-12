@@ -91,44 +91,47 @@
 
     <script src="../js/script.js"></script>
     <script>
-        function renderCartPage() {
-            const container = document.getElementById('cart-items');
-            const totalEl = document.getElementById('total-price');
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let total = 0;
+       function renderCartPage() {
+    const container = document.getElementById('cart-items');
+    const totalEl = document.getElementById('total-price');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let total = 0;
 
-            if (cart.length === 0) {
-                container.innerHTML = `<p style="text-align:center; padding:80px; font-size:1.2rem;">Giỏ hàng của bạn đang trống</p>`;
-                totalEl.textContent = '0';
-                return;
-            }
+    if (cart.length === 0) {
+        container.innerHTML = `<p style="text-align:center; padding:80px; font-size:1.2rem;">Giỏ hàng của bạn đang trống</p>`;
+        totalEl.textContent = '0';
+        return;
+    }
 
-            container.innerHTML = '';
-            cart.forEach((item, index) => {
-                const subtotal = item.price * item.quantity;
-                total += subtotal;
+    container.innerHTML = '';
+    cart.forEach((item, index) => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
 
-                const div = document.createElement('div');
-                div.className = 'cart-item';
-                div.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}">
-                    <div style="flex: 1;">
-                        <h3>${item.name}</h3>
-                        <p>${item.price.toLocaleString('vi-VN')} VNĐ × ${item.quantity}</p>
-                    </div>
-                    <div style="text-align: right;">
-                        <button onclick="changeQuantity(${index}, -1)" style="width:30px; height:30px;">-</button>
-                        <span style="margin:0 10px; font-weight:bold;">${item.quantity}</span>
-                        <button onclick="changeQuantity(${index}, 1)" style="width:30px; height:30px;">+</button>
-                        <br><br>
-                        <button onclick="removeFromCart(${index})" style="color:red; background:none; border:none; cursor:pointer;">Xóa</button>
-                    </div>
-                `;
-                container.appendChild(div);
-            });
+        // SỬA TẠI ĐÂY: Thêm '../' vào trước đường dẫn để quay về thư mục gốc tìm assets/
+        const itemImgPath = '../' + item.img; 
 
-            totalEl.textContent = total.toLocaleString('vi-VN');
-        }
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+            <img src="${itemImgPath}" alt="${item.name}">
+            <div style="flex: 1;">
+                <h3>${item.name}</h3>
+                <p>${item.price.toLocaleString('vi-VN')} VNĐ × ${item.quantity}</p>
+            </div>
+            <div style="text-align: right;">
+                <button onclick="changeQuantity(${index}, -1)" style="width:30px; height:30px;">-</button>
+                <span style="margin:0 10px; font-weight:bold;">${item.quantity}</span>
+                <button onclick="changeQuantity(${index}, 1)" style="width:30px; height:30px;">+</button>
+                <br><br>
+                <button onclick="removeFromCart(${index})" style="color:red; background:none; border:none; cursor:pointer;">Xóa</button>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+
+    totalEl.textContent = total.toLocaleString('vi-VN');
+}
 
         function changeQuantity(index, change) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
