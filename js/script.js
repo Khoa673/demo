@@ -26,16 +26,19 @@ function renderProducts() {
     products.forEach(product => {
         const card = document.createElement('div');
         card.className = 'flower-card';
-        card.innerHTML = `
-            <img src="${imgPrefix}${product.img}" alt="${product.name}">
-            <div class="flower-info">
-                <h3>${product.name}</h3>
-                <p class="flower-price">${product.price.toLocaleString('vi-VN')} VNĐ</p>
-                <p><small>${product.category}</small></p>
-                <a href="${linkPrefix}chi-tiet.html?id=${product.id}" class="btn btn-primary" style="display:block; margin:10px 0; text-decoration:none; line-height:35px; height:35px; padding:0;">Xem Chi Tiết</a>
-                <button onclick="addToCart('${product.id}')" class="btn btn-primary" style="width:100%">Thêm vào giỏ</button>
-            </div>
-        `;
+       // Tìm đoạn innerHTML cũ của card và thay thế phần button:
+       // Đoạn gán innerHTML trong hàm renderProducts() của file script.js nên trông như thế này:
+card.innerHTML = `
+    <img src="${imgPrefix}${product.img}" alt="${product.name}">
+    <div class="flower-info">
+        <h3>${product.name}</h3>
+        <p class="flower-price">${product.price.toLocaleString('vi-VN')} VNĐ</p>
+        <p><small>${product.category}</small></p>
+        
+        <a href="${linkPrefix}chi-tiet.html?id=${product.id}" class="btn btn-outline btn-block">Xem Chi Tiết</a>
+        <button onclick="addToCart('${product.id}')" class="btn btn-primary btn-block">Thêm vào giỏ</button>
+    </div>
+`;
         container.appendChild(card);
     });
 }
