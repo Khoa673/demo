@@ -41,7 +41,11 @@ function renderProducts() {
 }
 
 // Thêm vào giỏ hàng
+// Thêm vào giỏ hàng (Đã tối ưu hóa đồng bộ LocalStorage)
 function addToCart(id) {
+    // Đọc lại giỏ hàng mới nhất từ localStorage trước khi thao tác
+    cart = JSON.parse(localStorage.getItem('cart')) || [];
+
     const product = products.find(p => p.id === id);
     if (!product) return;
 
